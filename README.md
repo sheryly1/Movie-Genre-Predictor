@@ -26,7 +26,7 @@ movie-genre-predictor/
 │   └─ val.csv
 ├─ models/          # Folder for saved model files
 │   └─ genre_model.pkl
-├─ vectorizer/          # Folder for saved model files
+├─ vectorizer/          # Folder for saved vectorizer files
 │   └─ tfidf_vectorizer.pkl
 ├─ README.md
 └─ requirements.txt       # Required Python packages
