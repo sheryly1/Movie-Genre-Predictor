@@ -19,13 +19,15 @@ The dataset is from Kaggle: [movie-genre-prediction](https://www.kaggle.com/data
 movie-genre-predictor/
 │
 ├─ preprocessing.ipynb    # Clean, tokenize, lemmatize, and save CSVs
-├─ train.ipynb            # Train model(s) and evaluate
+├─ sklearn_model.ipynb    # Train model using logistic regression and Scikit-learn library
+├─ keras.ipynb      # Train model using neural network 
 ├─ clean_data/          # Folder for generated CSVs
 │   ├─ cleaned_movies.csv
 │   ├─ train.csv
 │   └─ val.csv
 ├─ models/          # Folder for saved model files
-│   └─ genre_model.pkl
+│   └─ log_genre_model.pkl # Model built with Scikit-learn & logistic regression 
+│   └─ keras_genre_model.h5 # Neural Network model
 ├─ vectorizer/          # Folder for saved vectorizer files
 │   └─ tfidf_vectorizer.pkl
 ├─ README.md
@@ -39,15 +41,22 @@ movie-genre-predictor/
 pip install -r requirements.txt
 ```
 2. Run `preprocessing.ipynb` to download, clean, and generate CSV files in `clean_data/`. 
-3. Train the model by running `train.ipynb` to train a logistic regression model and save it in `models/`. 
+3. Choose which model to train: 
+    1. Logistic Regression (Scikit-learn)
+        Run `sklearn_model.ipynb` to train a logistic regression model. The trained model will be saved in `models/log_genre_model.pkl `and the TF-IDF vectorizer in `vectorizer/tfidf_vectorizer.pkl`.
+    2. Neural Network (Keras/TensorFlow)
+        Run `keras.ipynb` to train a deep learning model. The trained model will be saved in `models/keras_genre_model.h5`. 
 4. Test model on new examples
-* *Note: Currently you can test examples in the last cell of `train.ipynb`. Future work will include a separate `test.ipynb` file to test different models and compare them to each other*
+    1. Logistic Regression (Scikit-learn)
+        Run the last cell in `sklearn_model.ipynb` to test model on new examples. 
+    2. Neural Network (Keras/Tensorflow)
+        *Currently working on a separate notebook to test model on new examples*
 
 # Results
 
+## Logistic Regression (Scikit-learn)
 Initial accuracy: ~0.35 (Logistic Regression)
 
 Plans for Future Improvement:  
 * Larger TF-IDF vocabulary
 * Stronger classifiers (LinearSVC, Naive Bayes) 
-* Neural networks 
