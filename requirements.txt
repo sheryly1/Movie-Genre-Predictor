@@ -7,3 +7,4 @@ contractions
 seaborn
 matplotlib
 joblib
+tensorflow
