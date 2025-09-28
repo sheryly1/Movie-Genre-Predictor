@@ -21,6 +21,7 @@ movie-genre-predictor/
 ├─ notebooks/          # Folder for notebooks
 │   ├─ preprocessing.ipynb    # Clean, tokenize, lemmatize, and save CSVs
 │   ├─ log_reg_model.ipynb    # Train model using logistic regression and Scikit-learn library
+│   ├─ nn_test.ipynb   
 │   └─ nn.ipynb      # Train model using neural network 
 ├─ clean_data/          # Folder for generated CSVs
 │   ├─ cleaned_movies.csv
@@ -28,7 +29,7 @@ movie-genre-predictor/
 │   └─ val.csv
 ├─ models/          # Folder for saved model files
 │   └─ log_genre_model.pkl # Model built with Scikit-learn & logistic regression 
-│   └─ nn_genre_model.h5 # Neural Network model
+│   └─ nn_genre_model_1.h5 # Neural Network model(s)
 ├─ vectorizer/          # Folder for saved vectorizer files
 │   └─ tfidf_vectorizer.pkl
 ├─ README.md
@@ -61,3 +62,13 @@ Initial accuracy: ~0.35 (Logistic Regression)
 Plans for Future Improvement:  
 * Larger TF-IDF vocabulary
 * Stronger classifiers (LinearSVC, Naive Bayes) 
+
+## Baseline Neural Network 
+I trained a neural network on the cleaned training dataset with validation and test splits. After 30 epochs, the model achieved: 
+    * Training Accuracy: 0.8421
+    * Training Loss: 0.3781
+    * Validation Accuracy: 0.2306
+    * Validation Loss: 6.0716
+    * Test Accuracy: ~0.21
+
+Since the model achieves high accuracy on the training set but fails to generalize to validation and test sets, it is overfitting. Next steps are to add regularization, and using early stopping so the model doesn't spend epochs memorizing. 
