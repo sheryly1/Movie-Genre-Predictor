@@ -64,11 +64,39 @@ Plans for Future Improvement:
 * Stronger classifiers (LinearSVC, Naive Bayes) 
 
 ## Baseline Neural Network 
-I trained a neural network on the cleaned training dataset with validation and test splits. After 30 epochs, the model achieved: 
-    * Training Accuracy: 0.8421
-    * Training Loss: 0.3781
-    * Validation Accuracy: 0.2306
-    * Validation Loss: 6.0716
-    * Test Accuracy: ~0.21
+I trained a recurrent neural network on the cleaned training dataset with validation and test splits using a bidirectional LSTM. The architecture was: 
+* Embedding layer: 10,000 word vocabulary with 64-dimensional embeddings 
+* Bidirectional LSTM: 64 hidden units 
+* Dropout: 0.5
+* Dense (ReLU): 64 units
+* Output: Dense with softmax activation over n classes 
+
+The model was trained for 30 epochs with a batch size of 32 using the Adam optimizer and categorical cross-entropy loss.
+
+After 30 epochs, the model achieved: 
+* Training Accuracy: 0.8421
+* Training Loss: 0.3781
+* Validation Accuracy: 0.2306
+* Validation Loss: 6.0716
+* Test Accuracy: ~0.21
 
 Since the model achieves high accuracy on the training set but fails to generalize to validation and test sets, it is overfitting. Next steps are to add regularization, and using early stopping so the model doesn't spend epochs memorizing. 
+
+## Regularized Neural Network (Version 2)
+In my second attempt, I focused on reducing overfitting by simplyfing the architecture and introducing regularization. The updated architecture was: 
+* Embedding layer: 10,000 word vocabulary with 128-dimensional embeddings
+* Bidirectional LSTM: 32 hidden units
+* Dropout: 0.35 after the LSTM
+* Dense (ReLU): 32 units with L2 regularization (0.02)
+* Batch Normalization
+* Dropout: 0.35 after Dense
+* Output layer: Dense with softmax activation over n classes
+
+Training was capped at 20 epochs with early stopping to prevent over-training.
+
+Results:
+* Training Accuracy: 0.4463 (at epoch 5)
+* Validation Accuracy: ~0.32
+* Test Accuracy: 0.3202
+
+This version improved generalization (test accuracy jumped from 0.21 -> 0.32). However, validatoin and test eprformance still plateaued around 32%, while training accuracy continued to rise. This suggests that although regularization reduced overfitting, the model capactiy or architecture may still be too limited. 
